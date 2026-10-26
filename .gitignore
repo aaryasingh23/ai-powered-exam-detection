@@ -1,0 +1,9 @@
+node_modules
+dist
+data/*.db
+data/*.db-*
+.env
+public/mediapipe
+public/models/face-api
+.claude
+*.log

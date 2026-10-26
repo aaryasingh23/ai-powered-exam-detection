@@ -1,0 +1,47 @@
+{
+  "name": "ai-exam-proctor",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "AI-Powered Online Exam Proctoring & Cheating Detection System",
+  "scripts": {
+    "dev": "concurrently -k -n server,client -c blue,magenta \"npm:dev:server\" \"npm:dev:client\"",
+    "dev:server": "tsx watch server/index.ts",
+    "dev:client": "vite",
+    "build": "tsc -b && vite build",
+    "start": "tsx server/index.ts",
+    "seed": "tsx server/seed.ts --reset",
+    "models:fetch": "node scripts/fetch-models.mjs",
+    "postinstall": "node scripts/copy-assets.mjs",
+    "typecheck": "tsc -b",
+    "build:prod": "npm run build"
+  },
+  "dependencies": {
+    "@mediapipe/tasks-vision": "^1.1.1",
+    "@vladmandic/face-api": "^1.7.15",
+    "clsx": "^2.1.1",
+    "express": "^5.3.0",
+    "lucide-react": "^1.61.0",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "react-router-dom": "^7.18.4",
+    "recharts": "^3.10.1",
+    "tsx": "^4.23.15",
+    "zustand": "^5.0.16"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.3.3",
+    "@types/express": "^5.0.6",
+    "@types/node": "^26.6.5",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.1.2",
+    "concurrently": "^10.0.6",
+    "tailwindcss": "^4.3.3",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.5"
+  },
+  "engines": {
+    "node": ">=22.13.0"
+  }
+}

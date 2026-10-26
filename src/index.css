@@ -1,0 +1,71 @@
+@import 'tailwindcss';
+
+@theme {
+  --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  --color-ink-950: #0b1020;
+  --color-ink-900: #11172b;
+  --color-ink-800: #1a2240;
+  --color-ink-700: #263055;
+  --shadow-soft: 0 1px 2px rgb(15 23 42 / 0.04), 0 8px 24px -8px rgb(15 23 42 / 0.10);
+  --shadow-glow: 0 0 0 1px rgb(99 102 241 / 0.15), 0 12px 40px -12px rgb(79 70 229 / 0.45);
+  --animate-pulse-ring: pulse-ring 1.6s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  --animate-fade-in: fade-in 0.25s ease-out;
+  --animate-slide-in: slide-in 0.3s ease-out;
+  --animate-scan: scan 3.2s linear infinite;
+}
+
+@keyframes pulse-ring {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes slide-in {
+  from { opacity: 0; transform: translateX(16px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes scan {
+  0% { top: 0%; }
+  100% { top: 100%; }
+}
+
+html, body, #root {
+  height: 100%;
+}
+body {
+  @apply bg-slate-50 text-slate-800 antialiased;
+  font-feature-settings: 'cv11', 'ss01';
+}
+
+.bg-mesh {
+  background-color: #f6f7fb;
+  background-image:
+    radial-gradient(at 12% 8%, rgb(99 102 241 / 0.14) 0, transparent 45%),
+    radial-gradient(at 88% 0%, rgb(147 51 234 / 0.12) 0, transparent 40%),
+    radial-gradient(at 70% 100%, rgb(14 165 233 / 0.08) 0, transparent 45%);
+}
+.bg-grid-dark {
+  background-color: var(--color-ink-950);
+  background-image:
+    linear-gradient(rgb(148 163 184 / 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(148 163 184 / 0.06) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+.glass {
+  @apply bg-white/75 backdrop-blur-xl;
+}
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Print-friendly reports */
+@media print {
+  .no-print { display: none !important; }
+  body { background: white !important; }
+  .print-sheet { box-shadow: none !important; border: none !important; margin: 0 !important; max-width: none !important; }
+  .print-break { break-inside: avoid; }
+  @page { margin: 14mm; }
+}
