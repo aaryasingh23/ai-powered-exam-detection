@@ -11,8 +11,10 @@ import { studentRouter } from './routes/student';
 import { seedIfNeeded } from './seed';
 import { tickSimulator } from './simulator';
 
-// Hosting platforms (Render, Railway…) inject PORT; locally API_PORT / 4000 is used.
-const PORT = Number(process.env.PORT ?? process.env.API_PORT ?? 4000);
+// Port priority: `--port 5000` argument (works the same on Windows / macOS / Linux),
+// then PORT (injected by hosts like Render), then API_PORT, then 4000.
+const portArg = process.argv.indexOf('--port');
+const PORT = Number((portArg > -1 ? process.argv[portArg + 1] : undefined) ?? process.env.PORT ?? process.env.API_PORT ?? 4000);
 const app = express();
 
 app.disable('x-powered-by');

@@ -123,6 +123,10 @@ Opens the API on http://localhost:4000 and the app on **http://localhost:5173**.
 | Seeded students | e.g. `STU1021` / `Student@123` (codes `PHY-2026`, `MATH-2026`, `DSA-2026`, `CN-2026`) |
 | Examiner | `examiner` / `Examiner@123` |
 
+**Presentation / production mode on port 5000:** `npm run demo` (builds, then serves website + API on
+http://localhost:5000). Afterwards `npm run start:5000` starts it again without rebuilding.
+Step-by-step Windows instructions: **SETUP-WINDOWS.md**. Public HTTPS deployment: **DEPLOY.md**.
+
 Other scripts: `npm run seed` (wipe & reseed the database), `npm run build` (type-check + production build),
 `npm start` (serve API + built app on port 4000).
 

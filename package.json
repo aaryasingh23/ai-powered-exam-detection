@@ -10,11 +10,12 @@
     "dev:client": "vite",
     "build": "tsc -b && vite build",
     "start": "tsx server/index.ts",
+    "start:5000": "tsx server/index.ts --port 5000",
+    "demo": "npm run build && npm run start:5000",
     "seed": "tsx server/seed.ts --reset",
     "models:fetch": "node scripts/fetch-models.mjs",
     "postinstall": "node scripts/copy-assets.mjs",
-    "typecheck": "tsc -b",
-    "build:prod": "npm run build"
+    "typecheck": "tsc -b"
   },
   "dependencies": {
     "@mediapipe/tasks-vision": "^1.1.1",
