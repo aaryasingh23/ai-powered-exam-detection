@@ -7,3 +7,5 @@ public/mediapipe
 public/models/face-api
 .claude
 *.log
+*.zip
+*.tsbuildinfo

@@ -88,6 +88,26 @@ if (process.env.DEMO_SIMULATOR !== 'false') {
   }, 5_000);
 }
 
-app.listen(PORT, () => {
+// Windows can let two servers share a port silently, so the browser would talk to
+// an old copy. Refuse to start if something already answers on this port.
+try {
+  const probe = await fetch(`http://127.0.0.1:${PORT}/api/health`, { signal: AbortSignal.timeout(800) });
+  if (probe.ok) {
+    console.error(`[api] Port ${PORT} is already in use by another ProctorGuard server. Stop it (Ctrl+C in its terminal) and try again.`);
+    process.exit(1);
+  }
+} catch {
+  // Nothing listening — good.
+}
+
+const server = app.listen(PORT, () => {
   console.log(`[api] ProctorGuard listening on port ${PORT}${existsSync(dist) ? ' (serving built frontend)' : ''}`);
+});
+server.on('error', (err: NodeJS.ErrnoException) => {
+  console.error(
+    err.code === 'EADDRINUSE'
+      ? `[api] Port ${PORT} is already in use. Close the other program or start with: npx tsx server/index.ts --port 5050`
+      : `[api] Server failed to start: ${err.message}`,
+  );
+  process.exit(1);
 });
